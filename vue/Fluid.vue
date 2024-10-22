@@ -2,19 +2,23 @@
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 
 const props = defineProps({
-  baseWidth: {
-    type: Number,
+  base: {
+    type: [Number, Array],
     required: true,
   },
 })
 
+const bases = Array.isArray(props.base) ? props.base : [props.base]
+const isBasesAscending = bases.length >= 2 && bases[0] < bases[1]
+
 const container = ref(null)
-const scale = ref(1)
+const contentWidth = ref(bases[0])
+const contentScale = ref(1)
 
 const contentStyle = computed(() => ({
-  width: `${props.baseWidth}px`,
-  height: `${100 / scale.value}%`,
-  transform: `scale(${scale.value})`,
+  width: `${contentWidth.value}px`,
+  height: `${100 / contentScale.value}%`,
+  transform: `scale(${contentScale.value})`,
   transformOrigin: 'top left',
 }))
 
@@ -22,7 +26,17 @@ let resizeObserver
 
 onMounted(() => {
   resizeObserver = new ResizeObserver(() => {
-    scale.value = container.value.offsetWidth / props.baseWidth
+    const containerWidth = container.value.offsetWidth
+
+    contentWidth.value = bases.reduce((width, breakpoint) => {
+      const isReached = isBasesAscending
+        ? containerWidth >= breakpoint
+        : containerWidth <= breakpoint
+
+      return isReached ? breakpoint : width
+    }, bases[0])
+
+    contentScale.value = containerWidth / contentWidth.value
   })
 
   resizeObserver.observe(container.value)

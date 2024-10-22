@@ -15,7 +15,7 @@ npm install fluid-content
 ```jsx
 import { Fluid } from 'fluid-content/react'
 
-<Fluid baseWidth={1000}>
+<Fluid base={1000}>
   ...
 </Fluid>
 ```
@@ -27,7 +27,21 @@ import { Fluid } from 'fluid-content/react'
 ```js
 import { Fluid } from 'fluid-content/vue'
 
-<Fluid :base-width="1000">
+<Fluid :base="1000">
   ...
 </Fluid>
 ```
+
+## Breakpoints
+
+You can provide an array of `base` values to create responsive breakpoints:
+
+```jsx
+import { Fluid } from 'fluid-content/react'
+
+<Fluid base={[400, 800, 1200]}>
+  ...
+</Fluid>
+```
+
+> The first value takes precedence. So in this case if the parent element is 600px wide, the content will scale using `base = 400`. You can flip this behavior by putting the values from high to low (`[1200, 800, 400]`).
