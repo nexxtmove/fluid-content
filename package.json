@@ -4,8 +4,8 @@
   "version": "0.1.0",
   "license": "MIT",
   "exports": {
-    "./react": "./react/Fluid.jsx",
-    "./vue": "./vue/Fluid.vue"
+    "./react": "./react/index.js",
+    "./vue": "./vue/index.js"
   },
   "scripts": {
     "format": "prettier --write ."
