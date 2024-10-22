@@ -28,4 +28,6 @@ import { Fluid } from 'fluid-content/vue'
 </Fluid>
 ```
 
-[<kbd> <br> DEMO <br> </kbd>][https://stackblitz.com/edit/fluid-content-vue?file=src%2FApp.vue]
+[<kbd> <br> DEMO <br> </kbd>][VUEDEMO]
+
+[VUEDEMO]: https://stackblitz.com/edit/fluid-content-vue?file=src%2FApp.vue
