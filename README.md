@@ -10,6 +10,8 @@ npm install fluid-content
 
 ## React
 
+[React demo](https://stackblitz.com/edit/fluid-content-react?file=src%2FApp.jsx)
+
 ```jsx
 import { Fluid } from 'fluid-content/react'
 
@@ -20,6 +22,8 @@ import { Fluid } from 'fluid-content/react'
 
 ## Vue
 
+[Vue demo](https://stackblitz.com/edit/fluid-content-vue?file=src%2FApp.vue)
+
 ```js
 import { Fluid } from 'fluid-content/vue'
 
@@ -27,5 +31,3 @@ import { Fluid } from 'fluid-content/vue'
   ...
 </Fluid>
 ```
-
-[Open Vue demo](https://stackblitz.com/edit/fluid-content-vue?file=src%2FApp.vue)
