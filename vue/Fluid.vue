@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { getContentStyle, getContentWidth } from '../common/utils'
 
 const props = defineProps({
   base: {
@@ -9,33 +10,19 @@ const props = defineProps({
 })
 
 const bases = Array.isArray(props.base) ? props.base : [props.base]
-const isBasesAscending = bases.length >= 2 && bases[0] < bases[1]
 
 const container = ref(null)
 const contentWidth = ref(bases[0])
 const contentScale = ref(1)
 
-const contentStyle = computed(() => ({
-  width: `${contentWidth.value}px`,
-  height: `${100 / contentScale.value}%`,
-  transform: `scale(${contentScale.value})`,
-  transformOrigin: 'top left',
-}))
+const contentStyle = computed(() => getContentStyle(contentWidth.value, contentScale.value))
 
 let resizeObserver
 
 onMounted(() => {
   resizeObserver = new ResizeObserver(() => {
     const containerWidth = container.value.offsetWidth
-
-    contentWidth.value = bases.reduce((width, breakpoint) => {
-      const isReached = isBasesAscending
-        ? containerWidth >= breakpoint
-        : containerWidth <= breakpoint
-
-      return isReached ? breakpoint : width
-    }, bases[0])
-
+    contentWidth.value = getContentWidth(bases, containerWidth)
     contentScale.value = containerWidth / contentWidth.value
   })
 

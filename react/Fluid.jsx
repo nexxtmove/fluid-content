@@ -1,31 +1,19 @@
 import { useRef, useState, useEffect } from 'react'
+import { getContentStyle, getContentWidth } from '../common/utils'
 
 export default function ({ base, children }) {
   const bases = Array.isArray(base) ? base : [base]
-  const isBasesAscending = bases.length >= 2 && bases[0] < bases[1]
 
   const [contentWidth, setContentWidth] = useState(bases[0])
   const [contentScale, setContentScale] = useState(1)
   const containerRef = useRef(null)
 
-  const contentStyle = {
-    width: `${contentWidth}px`,
-    height: `${100 / contentScale}%`,
-    transform: `scale(${contentScale})`,
-    transformOrigin: 'top left',
-  }
+  const contentStyle = getContentStyle(contentWidth, contentScale)
 
   useEffect(() => {
     const resizeObserver = new ResizeObserver(() => {
       const containerWidth = containerRef.current.offsetWidth
-
-      const contentWidth = bases.reduce((width, breakpoint) => {
-        const isReached = isBasesAscending
-          ? containerWidth >= breakpoint
-          : containerWidth <= breakpoint
-
-        return isReached ? breakpoint : width
-      }, bases[0])
+      const contentWidth = getContentWidth(bases, containerWidth)
 
       setContentWidth(contentWidth)
       setContentScale(containerWidth / contentWidth)
