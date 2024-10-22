@@ -1,0 +1,16 @@
+{
+  "name": "fluid-content",
+  "description": "Auto scale element content proportionally based on the parent width",
+  "version": "0.1.0",
+  "license": "MIT",
+  "exports": {
+    "./vue": "./Fluid.vue",
+    "./react": "./Fluid.jsx"
+  },
+  "scripts": {
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
+  }
+}
