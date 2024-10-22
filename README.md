@@ -8,9 +8,7 @@
 npm install fluid-content
 ```
 
-## Usage
-
-### React
+## React usage
 
 ```jsx
 import { Fluid } from 'fluid-content/react'
@@ -20,7 +18,7 @@ import { Fluid } from 'fluid-content/react'
 </Fluid>
 ```
 
-### Vue
+## Vue usage
 
 ```js
 import { Fluid } from 'fluid-content/vue'
