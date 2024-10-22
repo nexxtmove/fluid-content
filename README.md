@@ -45,3 +45,14 @@ import { Fluid } from 'fluid-content/react'
 ```
 
 > The first value takes precedence. So in this case if the parent element is 600px wide, the content will scale using `base = 400`. You can flip this behavior by putting the values from high to low (`[1200, 800, 400]`).
+
+You can also pass `Infinity` to indicate that the content shouldn't scale after a given breakpoint:
+
+```jsx
+import { Fluid } from 'fluid-content/react'
+
+// Only scale below a parent width of 1200px
+<Fluid base={[1200, Infinity]}>
+  ...
+</Fluid>
+```

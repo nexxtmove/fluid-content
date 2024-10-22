@@ -10,11 +10,21 @@ export function getContentStyle(width, scale) {
 export function getContentWidth(bases, containerWidth) {
   const isBasesAscending = bases.length >= 2 && bases[0] < bases[1]
 
-  return bases.reduce((width, breakpoint) => {
+  return bases.reduce((width, breakpoint, i) => {
     const isReached = isBasesAscending
       ? containerWidth >= breakpoint
       : containerWidth <= breakpoint
 
-    return isReached ? breakpoint : width
+    if (!isReached) {
+      return width
+    }
+
+    const nextBreakpoint = bases[i + 1]
+    if (nextBreakpoint === Infinity) {
+      // When passing `Infinity` as next value, stop scaling from this breakpoint.
+      return containerWidth
+    }
+
+    return breakpoint
   }, bases[0])
 }
