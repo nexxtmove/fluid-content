@@ -1,13 +1,14 @@
 {
   "name": "fluid-content",
   "description": "Auto scale element content proportionally based on the parent width",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "license": "MIT",
   "exports": {
     "./react": "./react/index.js",
     "./vue": "./vue/index.js",
     "./vue2": "./vue2/index.js"
   },
+  "types": "./types/fluid-content.d.ts",
   "scripts": {
     "format": "prettier --write ."
   },
